@@ -1,0 +1,395 @@
+﻿:root {
+  color-scheme: dark;
+
+  --bg: #0e1526;
+  --surface: #151e33;
+  --field: #1b2640;
+  --border: rgba(148, 163, 184, 0.14);
+  --text: #e6eaf3;
+  --muted: #8f9bb3;
+
+  --accent: #3b82f6;
+  --accent-hover: #5b9aff;
+  --accent-glow: rgba(59, 130, 246, 0.45);
+
+  --success-from: #14361f;
+  --success-to: #0f2718;
+  --success-border: rgba(74, 222, 128, 0.22);
+  --success-text: #86efac;
+
+  --danger-bg: rgba(239, 68, 68, 0.12);
+  --danger-border: rgba(239, 68, 68, 0.28);
+  --danger-text: #fca5a5;
+
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --ease: 0.16s ease;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 360px;
+  max-width: 100%;
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--bg);
+  color: var(--text);
+  font: 0.8125rem/1.35 Inter, system-ui, "Segoe UI", -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Layout dos campos ---- */
+
+.linha {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 8px;
+}
+.linha.tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+label {
+  display: block;
+  margin: 6px 0 3px;
+  color: var(--text);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+.dica { color: var(--muted); font-weight: 400; }
+
+input[type="text"],
+input[type="time"],
+input[type="number"] {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--field);
+  color: var(--text);
+  font: inherit;
+  transition: border-color var(--ease), box-shadow var(--ease), background var(--ease);
+}
+input::placeholder { color: var(--muted); opacity: 0.7; }
+input:hover:not(:disabled) { border-color: rgba(148, 163, 184, 0.28); }
+
+input[type="text"]:focus,
+input[type="time"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* ---- Campos de hora HH:MM (dois segmentos; a máscara "--" fica sempre visível) ---- */
+
+:root { --campo-h: 34px; }
+
+.campo-hora {
+  display: flex;
+  align-items: center;
+  height: var(--campo-h);
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--field);
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+.campo-hora:hover { border-color: rgba(148, 163, 184, 0.28); }
+.campo-hora:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+.campo-hora input[type="text"],
+.campo-hora input[type="text"]:hover,
+.campo-hora input[type="text"]:focus {
+  width: 2.4ch;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.campo-hora input.hh { text-align: right; }
+.campo-hora input.mm { text-align: left; }
+#saldo input.hh { width: 3.2ch; }              /* cabe "101" (bancos acima de 99h) */
+#saldo.campo-hora { padding-left: 4px; }
+.campo-hora input::placeholder { color: var(--text); opacity: 0.6; }
+.campo-hora input::selection { background: rgba(59, 130, 246, 0.55); color: #fff; }
+.campo-hora .sep { padding: 0 1px; color: var(--muted); }
+
+/* ---- Saldo anterior: botão de sinal + campo de hora, num único quadro ---- */
+
+.saldo-campo {
+  display: flex;
+  align-items: stretch;
+  height: var(--campo-h);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--field);
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+.saldo-campo:hover { border-color: rgba(148, 163, 184, 0.28); }
+.saldo-campo:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+.saldo-campo .campo-hora,
+.saldo-campo .campo-hora:hover,
+.saldo-campo .campo-hora:focus-within {
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  border: 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+button.sinal {
+  flex: none;
+  align-self: stretch;
+  width: 34px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-right: 1px solid var(--border);
+  border-radius: calc(var(--radius-md) - 1px) 0 0 calc(var(--radius-md) - 1px);
+  background: rgba(74, 222, 128, 0.12);
+  color: var(--success-text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  transform: none;
+}
+button.sinal[data-sinal="-"] { background: rgba(239, 68, 68, 0.14); color: var(--danger-text); }
+button.sinal:hover { background: rgba(74, 222, 128, 0.22); transform: none; box-shadow: none; }
+button.sinal[data-sinal="-"]:hover { background: rgba(239, 68, 68, 0.24); }
+button.sinal:active { transform: none; box-shadow: none; }
+button.sinal:focus-visible { box-shadow: inset 0 0 0 2px rgba(91, 154, 255, 0.7); }
+
+.linha input[type="time"] { height: var(--campo-h); }
+input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity var(--ease);
+}
+input[type="time"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
+
+/* ---- Estratégia (card, opções na mesma linha) ---- */
+
+fieldset {
+  display: grid;
+  gap: 0;
+  margin: 8px 0 0;
+  padding: 0 6px 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+legend {
+  padding: 0 5px;
+  color: var(--muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.opcao {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px; /* mantém a altura estável quando o campo de hora aparece */
+  margin: 0;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background var(--ease);
+}
+.opcao:hover { background: rgba(255, 255, 255, 0.04); }
+.opcao:focus-within { background: rgba(59, 130, 246, 0.1); }
+
+input[type="radio"] { margin: 0; accent-color: var(--accent); cursor: pointer; }
+
+/* Tooltip da opção "Escolher minha saída": só ao passar o mouse ou focar o rádio pelo teclado */
+.opcao-dica { position: relative; }
+.tooltip {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 8px;
+  right: 8px;
+  z-index: 10;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #0a1020;
+  color: var(--text);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--ease) 0s, visibility 0s linear 0s;
+}
+.opcao-dica:hover .tooltip,
+.opcao-dica:has(input[type="radio"]:focus-visible) .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--ease) 0.35s, visibility 0s linear 0.35s;
+}
+
+#dias {
+  width: 52px;
+  padding: 3px 6px;
+  text-align: center;
+}
+#saidaFixa {
+  width: 92px;
+  padding: 3px 6px;
+}
+#dias:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---- Botões ---- */
+
+button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 6px 16px -8px var(--accent-glow);
+  transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
+}
+button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px -8px var(--accent-glow);
+}
+button:active { transform: translateY(0); box-shadow: 0 3px 10px -6px var(--accent-glow); }
+button:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(91, 154, 255, 0.5); }
+
+button.secundario {
+  margin-top: 6px;
+  padding: 5px 12px;
+  background: transparent;
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
+  font-size: 0.8125rem;
+  box-shadow: none;
+}
+button.secundario:hover {
+  background: rgba(74, 222, 128, 0.1);
+  box-shadow: none;
+  transform: none;
+}
+
+/* ---- Erro ---- */
+
+.erro {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--danger-border);
+  border-radius: var(--radius-md);
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  animation: entrada 0.2s ease;
+}
+
+/* ---- Resultado ---- */
+
+#resultado {
+  margin-top: 10px;
+  padding: 8px 12px 10px;
+  border: 1px solid var(--success-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, var(--success-from), var(--success-to));
+  text-align: center;
+  animation: entrada 0.25s ease;
+}
+
+.saida-label {
+  color: var(--success-text);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.saida {
+  margin: 0 0 2px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.detalhe {
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.status { margin-top: 8px; color: var(--muted); font-size: 0.75rem; text-align: center; }
+.status:empty { display: none; }
+
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 340px) {
+  body { padding: 10px; }
+  .linha.tres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ---- Versão web (index.html): o app vira um cartão centralizado; no popup estas regras não valem ---- */
+
+html.web { background: #080d18; }
+.web body {
+  margin: 24px auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.8);
+}
+.web .rodape { margin: 10px 0 0; color: var(--muted); font-size: 0.6875rem; text-align: center; }
+.rodape { display: none; } /* só aparece na versão web */
+.web .rodape { display: block; }
+
+@media (max-width: 400px) {
+  html.web { background: var(--bg); }
+  .web body { width: 100%; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+}
+
+[hidden] { display: none !important; }
+
+
+

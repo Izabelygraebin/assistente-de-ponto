@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Assistente de Ponto",
+  "version": "0.1.0",
+  "description": "Calcula o horário de saída para quitar ou compensar o banco de horas, respeitando o limite de 2h extras por dia.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Assistente de Ponto",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.ahgora.com.br/*",
+        "https://*.pontomais.com.br/*"
+      ],
+      "js": ["scripts/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

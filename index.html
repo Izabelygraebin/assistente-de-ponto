@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" class="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calcule a que horas você pode ir embora considerando o saldo do banco de horas.">
+  <title>Assistente de Ponto</title>
+  <link rel="icon" type="image/png" href="icons/icon48.png">
+  <link rel="stylesheet" href="popup/popup.css">
+</head>
+<body>
+  <h1>Assistente de Ponto</h1>
+
+  <form id="form" novalidate>
+    <div class="linha">
+      <div>
+        <label for="carga">Carga horária diária</label>
+        <input id="carga" type="time" value="08:00">
+      </div>
+      <div>
+        <label for="saldoH">Saldo anterior</label>
+        <div class="saldo-campo">
+          <button type="button" id="saldoSinal" class="sinal" data-sinal="+"
+                  aria-label="Sinal do saldo: positivo. Clique para alternar." aria-pressed="false">+</button>
+          <div id="saldo" class="campo-hora" role="group" aria-label="Saldo anterior">
+            <input id="saldoH" class="hh" type="text" inputmode="numeric" maxlength="2" placeholder="--" autocomplete="off" aria-label="Saldo, horas">
+            <span class="sep" aria-hidden="true">:</span>
+            <input class="mm" type="text" inputmode="numeric" maxlength="2" placeholder="--" autocomplete="off" aria-label="Saldo, minutos">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="linha tres">
+      <div>
+        <label for="entrada1H">Entrada 1</label>
+        <div id="entrada1" class="campo-hora" data-max-horas="23" role="group" aria-label="Entrada 1">
+          <input id="entrada1H" class="hh" type="text" inputmode="numeric" maxlength="2" placeholder="--" autocomplete="off" aria-label="Entrada 1, horas">
+          <span class="sep" aria-hidden="true">:</span>
+          <input class="mm" type="text" inputmode="numeric" maxlength="2" placeholder="--" autocomplete="off" aria-label="Entrada 1, minutos">
+        </div>
+      </div>
+      <div>
+        <label for="saida1H">Saída 1 <span class="dica">almoço</span></label>
+        <div id="saida1" class="campo-hora" data-max-horas="23" role="group" aria-label="Saída 1">
+          <input id="saida1H" class="hh" type="text" inputmode="numeric" maxlength="2" placeholder="--" autocomplete="off" aria-label="Saída 1, horas">
+          <span class="sep" aria-hidden="true">:</span>
+          <input class="mm" type="text" inputmode="numeric" maxlength="2" placeholder="--" autocomplete="off" aria-label="Saída 1, minutos">
+        </div>
+      </div>
+      <div>
+        <label for="entrada2H">Entrada 2 <span class="dica">retorno</span></label>
+        <div id="entrada2" class="campo-hora" data-max-horas="23" role="group" aria-label="Entrada 2">
+          <input id="entrada2H" class="hh" type="text" inputmode="numeric" maxlength="2" placeholder="--" autocomplete="off" aria-label="Entrada 2, horas">
+          <span class="sep" aria-hidden="true">:</span>
+          <input class="mm" type="text" inputmode="numeric" maxlength="2" placeholder="--" autocomplete="off" aria-label="Entrada 2, minutos">
+        </div>
+      </div>
+    </div>
+
+    <fieldset id="objetivo">
+      <legend>Objetivo de hoje</legend>
+      <label class="opcao"><input type="radio" name="estrategia" value="hoje" checked> Zerar banco hoje</label>
+      <div class="opcao-dica">
+        <label class="opcao">
+          <input type="radio" name="estrategia" value="fixo" aria-describedby="dicaFixo"> Escolher minha saída
+          <input id="saidaFixa" type="time" value="18:00" aria-label="Horário de saída desejado" hidden>
+        </label>
+        <span id="dicaFixo" class="tooltip" role="tooltip">
+          Você escolhe a hora em que quer sair. O saldo cobre o atraso (ou recebe o extra) e você vê o novo saldo para amanhã.
+        </span>
+      </div>
+      <label class="opcao">
+        <input type="radio" name="estrategia" value="dividir"> Distribuir em
+        <input id="dias" type="number" min="2" max="60" value="2" aria-label="Número de dias"> dias
+      </label>
+    </fieldset>
+
+    <button type="submit" id="calcular">Calcular saída</button>
+  </form>
+
+  <div id="erro" class="erro" role="alert" hidden></div>
+
+  <section id="resultado" hidden>
+    <div class="saida-label">Saída 2 · horário final</div>
+    <div id="saida2" class="saida"></div>
+    <div class="detalhe">
+      <div id="saidaBase"></div>
+      <div id="saldoAplicado"></div>
+      <div id="horasTrabalhadas"></div>
+    </div>
+    <button type="button" id="encerrar" class="secundario">Encerrar Dia</button>
+  </section>
+
+  <div id="status" class="status" role="status"></div>
+
+  <p class="rodape">Seus dados ficam salvos só neste navegador.</p>
+
+  <script src="scripts/storage.js"></script>
+  <script src="popup/popup.js"></script>
+</body>
+</html>
+
