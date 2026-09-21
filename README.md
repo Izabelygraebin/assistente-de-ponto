@@ -11,7 +11,7 @@ Extensão para Chrome (Manifest V3) e página web estática, feita só com HTML,
   <img alt="Spec-Driven Development" src="https://img.shields.io/badge/m%C3%A9todo-Spec--Driven%20Development-8250df">
 </p>
 
-### 👉 [Testar a versão web](https://SEU-USUARIO.github.io/assistente-de-ponto/) <sub>(link de exemplo: troque pelo endereço real do seu GitHub Pages)</sub>
+### 👉 [Testar a versão web](https://izabelygraebin.github.io/calculadora_de_ponto/)
 
 ---
 
