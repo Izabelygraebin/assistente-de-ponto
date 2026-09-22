@@ -87,7 +87,7 @@ O card de resultado mostra ainda a **Saída normal sem saldo** (a saída de hoje
 
 1. Baixe ou clone este repositório:
    ```bash
-   git clone https://github.com/SEU-USUARIO/assistente-de-ponto.git
+   git clone https://github.com/izabelygraebin/assistente-de-ponto.git
    ```
 2. No Chrome, abra `chrome://extensions`.
 3. Ative o **Modo do desenvolvedor** (canto superior direito).
