@@ -1,0 +1,18 @@
+# Arquivos de sistema operacional (Windows / macOS)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Pastas de configuração de editores
+.vscode/
+.idea/
+
+# Pacotes compactados (evita subir o zip da extensão para o Git)
+*.zip
+*.rar
+*.tar.gz
+
+# Logs e arquivos temporários
+*.log
+*.tmp

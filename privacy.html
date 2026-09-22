@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Política de Privacidade do Assistente de Ponto.">
+  <title>Política de Privacidade · Assistente de Ponto</title>
+  <link rel="icon" type="image/png" href="icons/icon48.png">
+  <link rel="stylesheet" href="popup/popup.css">
+  <style>
+    body.web { padding: 20px 22px 16px; }
+    .politica p { margin: 0 0 10px; color: var(--text); }
+    .politica ul { margin: 0 0 10px; padding-left: 20px; color: var(--text); }
+    .politica li { margin: 0 0 4px; }
+    .politica h2 { margin: 16px 0 6px; font-size: 0.8125rem; color: var(--text); }
+    .voltar { display: inline-block; margin-top: 10px; color: var(--accent); font-size: 0.75rem; text-decoration: none; }
+    .voltar:hover { color: var(--accent-hover); text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Política de Privacidade</h1>
+
+  <div class="politica">
+    <p>O Assistente de Ponto é uma ferramenta simples que calcula o horário de saída a partir do seu banco de horas. Esta página explica, de forma direta, como seus dados são tratados.</p>
+
+    <h2>Coleta de dados</h2>
+    <p>O Assistente de Ponto não coleta nenhum dado pessoal. Não há cadastro, login ou envio de informações para servidores.</p>
+
+    <h2>Cookies e rastreamento</h2>
+    <p>Esta página e a extensão não usam cookies de rastreamento, pixels ou qualquer mecanismo de análise de comportamento de terceiros.</p>
+
+    <h2>Armazenamento local</h2>
+    <ul>
+      <li>Na versão web, os horários que você digita (carga horária, saldo, entradas e saídas) ficam salvos apenas no <code>localStorage</code> do seu navegador, no seu próprio dispositivo.</li>
+      <li>Na extensão para Chrome, os mesmos dados ficam em <code>chrome.storage.sync</code>, associado à sua conta Google, para sincronizar entre seus dispositivos.</li>
+      <li>Em nenhum dos dois casos esses dados saem do seu navegador ou passam por um servidor controlado por nós.</li>
+    </ul>
+
+    <h2>Contato</h2>
+    <p>Dúvidas ou sugestões podem ser abertas como <em>issue</em> no <a href="https://github.com/izabelygraebin/assistente-de-ponto">repositório do projeto no GitHub</a>.</p>
+
+    <a class="voltar" href="index.html">&larr; Voltar para o Assistente de Ponto</a>
+  </div>
+</body>
+</html>

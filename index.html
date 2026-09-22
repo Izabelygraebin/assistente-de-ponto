@@ -7,6 +7,25 @@
   <title>Assistente de Ponto</title>
   <link rel="icon" type="image/png" href="icons/icon48.png">
   <link rel="stylesheet" href="popup/popup.css">
+
+  <!--
+    Analytics (opcional): inserir aqui o snippet do Google Analytics (GA4)
+    ou do Cloudflare Web Analytics quando o ID estiver disponível.
+    Nenhum dado pessoal é coletado por este app; ambos servem só para
+    métricas agregadas de uso da página web.
+
+    Google Analytics (GA4):
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    Cloudflare Web Analytics:
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"}'></script>
+  -->
 </head>
 <body>
   <h1>Assistente de Ponto</h1>
@@ -94,7 +113,13 @@
 
   <div id="status" class="status" role="status"></div>
 
-  <p class="rodape">Seus dados ficam salvos só neste navegador.</p>
+  <p class="rodape">
+    Seus dados ficam salvos só neste navegador.
+    <br>
+    <a href="privacy.html">Política de Privacidade</a>
+    ·
+    <a href="https://github.com/izabelygraebin/assistente-de-ponto">GitHub</a>
+  </p>
 
   <script src="scripts/storage.js"></script>
   <script src="popup/popup.js"></script>
