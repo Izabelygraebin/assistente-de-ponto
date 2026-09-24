@@ -163,7 +163,3 @@ A lógica de cálculo (`calcular`, conversões de HH:MM ⇄ minutos, máscara do
 ## ⚠️ Aviso
 
 O Assistente de Ponto é uma **ferramenta de apoio ao planejamento**. Ele **não substitui** o sistema oficial de ponto da sua empresa nem orientação jurídica. Regras de banco de horas e de limites de jornada podem variar conforme acordo individual, convenção ou acordo coletivo, então confira sempre o que vale para você.
-
-## 📄 Licença
-
-A definir. Adicione um arquivo `LICENSE` antes de publicar.
